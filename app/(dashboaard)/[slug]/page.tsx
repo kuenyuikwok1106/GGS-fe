@@ -83,7 +83,6 @@ export default async function CustomersPage({ params }: { params: { slug: string
     if (!page) return;
     const data = await fetch(`${process.env.BASE_URL}${page.link}`, { cache: 'no-store' });
     const { count, rows: info }: { count: number, rows: TBasicCustomerInfo[] | TBasicCompanyInfo[] } = await data.json();
-    console.log(count, info)
     
     return (
         <Paper sx={{ padding: 0 }}>

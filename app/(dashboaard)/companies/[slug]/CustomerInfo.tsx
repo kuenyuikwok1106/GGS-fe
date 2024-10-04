@@ -27,21 +27,21 @@ export default function CustomerInfo({
                         {
                             customers.length
                                 ? (
-                                    customers.map(({companyRolesCompanyCustomers, customer}) => (
-                                        <TableRow key={customer.id} sx={{ '&:hover': { cursor: 'pointer' } }}>
-                                            <TableCell onClick={() => router.push(`/customers/${customer.id}`)} >
+                                    customers.map(({companyRoles, id, firstName, lastName }) => (
+                                        <TableRow key={id} sx={{ '&:hover': { cursor: 'pointer' } }}>
+                                            <TableCell onClick={() => router.push(`/customers/${id}`)} >
                                                 {
-                                                    customer.firstName && customer.lastName
-                                                    ? `${customer.firstName} ${customer.lastName}`
+                                                    firstName && lastName
+                                                    ? `${firstName} ${lastName}`
                                                     : '-'
                                                 }
                                             </TableCell>
                                             <TableCell>
                                                 {
-                                                    companyRolesCompanyCustomers.length
+                                                    companyRoles.length
                                                     ? (
-                                                        companyRolesCompanyCustomers.map((role) => (
-                                                            <Chip key={role.companyRole.name} sx={{ m: 1 }} label={ role.companyRole.name } />
+                                                        companyRoles.map((role) => (
+                                                            <Chip key={role.name} sx={{ m: 1 }} label={ role.name } />
                                                         ))
                                                     ) : (
                                                         <Typography variant="subtitle1">No role is attached to this customer.</Typography>
