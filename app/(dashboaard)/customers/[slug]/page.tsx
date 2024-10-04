@@ -1,11 +1,15 @@
+import CompanyInfo from "./CompanyInfo";
 import Header from "./Header";
 import PersonalInfo from './PersonalInfo';
 
 export default async function CustomerDetailsPage({ params }: { params: { slug: string } }) {
-    const data = (await fetch(`${process.env.BASE_URL}/customers/${params.slug}`, { cache: 'no-store' }));
-    const customer = await data.json();
-    const { tags, companiesCustomers, ...remaining } = customer;
-    console.log(companiesCustomers[0].companyRolesCompanyCustomers)
+    const customerData = (await fetch(`${process.env.BASE_URL}/customers/${params.slug}`, { cache: 'no-store' }));
+    const customerInfo = await customerData.json();
+    const { companies, companyRoles: customerRoles ,tags, ...customer } = customerInfo;
+
+    const companyData = await fetch(`${process.env.BASE_URL}/companies`, { cache: 'no-store' });
+    const { rows: companyInfo } = await companyData.json();
+
     return (
         <>
             <Header
@@ -15,7 +19,13 @@ export default async function CustomerDetailsPage({ params }: { params: { slug: 
                 verifiedEmail={customer.verifiedEmail}
                 validEmailAddress={customer.validEmailAddress}
             />
-            <PersonalInfo tags={tags ? tags.split(',') : []} {...remaining} />
+            <PersonalInfo tags={tags ? tags.split(',') : []} {...customer} />
+            <CompanyInfo
+                customerId={customer.id}
+                companies={companies}
+                customerRoles={customerRoles}
+                companyInfo={companyInfo}
+            />
         </>
     )
 

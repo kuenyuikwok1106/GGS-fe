@@ -27,41 +27,40 @@ export default function CustomerInfo({
                         {
                             customers.length
                                 ? (
-                                    customers.map(({companyRoles, id, firstName, lastName }) => (
+                                    customers.map(({ companyRoles, id, firstName, lastName }) => (
                                         <TableRow key={id} sx={{ '&:hover': { cursor: 'pointer' } }}>
                                             <TableCell onClick={() => router.push(`/customers/${id}`)} >
                                                 {
                                                     firstName && lastName
-                                                    ? `${firstName} ${lastName}`
-                                                    : '-'
+                                                        ? `${firstName} ${lastName}`
+                                                        : '-'
                                                 }
                                             </TableCell>
                                             <TableCell>
                                                 {
                                                     companyRoles.length
-                                                    ? (
-                                                        companyRoles.map((role) => (
-                                                            <Chip key={role.name} sx={{ m: 1 }} label={ role.name } />
-                                                        ))
-                                                    ) : (
-                                                        <Typography variant="subtitle1">No role is attached to this customer.</Typography>
-                                                    )
+                                                        ? (
+                                                            companyRoles.map((role) => (
+                                                                <Chip key={role.name} sx={{ m: 1 }} label={role.name} />
+                                                            ))
+                                                        ) : (
+                                                            <Typography variant="subtitle1">No role is attached to this customer.</Typography>
+                                                        )
                                                 }
                                             </TableCell>
-                                        </TableRow>                                        
+                                        </TableRow>
                                     ))
-                                ): (
+                                ) : (
                                     <TableRow>
                                         <TableCell colSpan={2}>
-                                            <Typography variant = 'subtitle1' textAlign = "center"> Sorry, the company do not have any customer yet. </Typography>
+                                            <Typography variant='subtitle1' textAlign="center"> Sorry, the company do not have any customer yet. </Typography>
                                         </TableCell>
                                     </TableRow>
                                 )
                         }
-                </TableBody>
-            </Table>
-        </TableContainer>
+                    </TableBody>
+                </Table>
+            </TableContainer>
         </Box >
-
     )
 }
