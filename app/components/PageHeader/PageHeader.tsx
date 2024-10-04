@@ -1,27 +1,24 @@
 'use client';
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormLabel, Grid2, OutlinedInput, styled } from '@mui/material';
+import { OutlinedInput } from '@mui/material';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import { MuiTelInput } from 'mui-tel-input';
-import React, { useReducer, useState } from 'react';
-import CreateCustomerDialog from '../../(dashboaard)/customers/CreateDialog';
-import CreateCompanyDialog from '../../(dashboaard)/companies/CreateDialog';
-
-
+import SearchIcon from '@mui/icons-material/Search';
+import { Dispatch, SetStateAction } from 'react';
 
 type TPageHeader = {
     header: string;
     subtitle: string;
-    createButtonText: string;
+    query: string;
+    onChangeQuery: Dispatch<SetStateAction<string>>;
 }
 
 export default function PageHeader({
     header,
     subtitle,
-    createButtonText,
+    query,
+    onChangeQuery,
 }: Readonly<TPageHeader>) {
-    const [open, setOpen] = useState(false);
 
     return (
         <>
@@ -32,15 +29,17 @@ export default function PageHeader({
                         <Typography variant='subtitle1'>{ subtitle }</Typography>
                     </Box>
                     <Box>
-                        <Button onClick={() => setOpen(true)}>{createButtonText}</Button>
+                        <OutlinedInput
+                            size="small"
+                            startAdornment={<SearchIcon />}
+                            value={query}
+                            onChange={(e) => {
+                                onChangeQuery(e.target.value)
+                            }}
+                        />
                     </Box>
                 </Stack>
             </Box>
-            {
-                header === 'Customers'
-                ? (<CreateCustomerDialog open={open} onClick={setOpen} />)
-                : (<CreateCompanyDialog open={open} onClick={setOpen} />)
-            }
         </>
     )
 }
