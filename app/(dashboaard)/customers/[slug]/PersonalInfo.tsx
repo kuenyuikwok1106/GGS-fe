@@ -118,7 +118,14 @@ export default function PersonalInfo({
 
     const handleOnCancel = () => {
         setEditMode(false);
-        dispatch({ type: ActionType.RESET, payload: { firstName, lastName, email, phone, note, tags } });
+        dispatch({ type: ActionType.RESET, payload: {
+            firstName: firstName || '',
+            lastName: lastName || '',
+            email: email || '',
+            phone: phone || '',
+            note: note || '',
+            tags: tags || [],
+        } });
     }
 
     return (

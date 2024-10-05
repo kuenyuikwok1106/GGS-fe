@@ -1,6 +1,11 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
 
 export default function Page() {
-  return <Typography>Welcome to a page in the dashboard!</Typography>;
+  return (
+    <Container>
+      <Typography textAlign="center" >Thank you for the opportunity :D</Typography>
+    </Container>
+  )
 }
