@@ -10,10 +10,8 @@ export default async function deleteCompany(companyId: string, formData: FormDat
             method: "DELETE",
         });
         const json = await res.json();
-        console.log(json)
         if(!json.data) throw new Error(json.errors.map((e: any) => e.message).join('\n'));
     } catch (error: any) {
-        console.log(error)
         throw new Error(error.message)
     }
     revalidatePath('/companies');

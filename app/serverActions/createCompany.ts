@@ -11,7 +11,6 @@ export default async function createCustomer(formData: FormData) {
             body: formData,
         });
         const json = await res.json();
-        console.log(json)
         if(!json.data) throw new Error(json.errors.map((e: any) => e.message).join('\n'));
         const idSegment = json.data.id.split('/');
         id = idSegment[idSegment.length - 1];

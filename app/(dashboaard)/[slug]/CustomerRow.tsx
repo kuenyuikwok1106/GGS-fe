@@ -38,7 +38,7 @@ export default function CustomerRow({
                 '&:last-child td, &:last-child th': { border: 0 },
                 '&:hover': { cursor: 'pointer' }
             }}
-            onClick={() => { router.push(`/customers/${id}`); console.log('bye') }}
+            onClick={() => { router.push(`/customers/${id}`) }}
         >
             <TableCell component="th" scope="row" >
                 {

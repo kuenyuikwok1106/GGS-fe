@@ -25,9 +25,16 @@ export default function CompanyInfo({
     const attachRoleToCustomerWithCustomerId = attachRoleToCustomer.bind(null, customerId);
 
 
-    const allCompanyRoles = useMemo(() => (companies[0].companyRoles.map(({ id, name }) => ({ id, label: name }))), [companies]);
+    const allCompanyRoles = useMemo(() => (
+        companies[0]?.companyRoles && companies[0].companyRoles.length
+            ? companies[0].companyRoles.map(({ id, name }) => ({ id, label: name }))
+            : []
+    ), [companies]);
+
     const customerInitialRole = useMemo(() => (
-        allCompanyRoles.filter((role) => customerRoles.find((cr) => role.id === cr.id))
+        allCompanyRoles.length
+            ? allCompanyRoles.filter((role) => customerRoles.find((cr) => role.id === cr.id))
+            : []
     ), [customerRoles])
 
     const [appendRole, setAppendRole] = useState(customerInitialRole);
@@ -112,28 +119,28 @@ export default function CompanyInfo({
                                         </TableRow>
                                     )
                             }
-                            {
-                                appendRole && appendRole.length
-                                    ? (
-                                        appendRole.map((role) => (
-                                            <input
-                                                key={role.id}
-                                                type="hidden"
-                                                name="role"
-                                                value={role.id}
-                                            />
-                                        ))
-                                    ) : (
-                                        <input
-                                            type="hidden"
-                                            name="role"
-                                            value={[]}
-                                        />
-                                    )
-                            }
                         </TableBody>
                     </Table>
                 </TableContainer>
+                {
+                    appendRole && appendRole.length
+                        ? (
+                            appendRole.map((role) => (
+                                <input
+                                    key={role.id}
+                                    type="hidden"
+                                    name="role"
+                                    value={role.id}
+                                />
+                            ))
+                        ) : (
+                            <input
+                                type="hidden"
+                                name="role"
+                                value={[]}
+                            />
+                        )
+                }
             </form>
             <AddCompanyDialog
                 open={open}

@@ -81,7 +81,7 @@ export default function CreateDialog({
             open={open}
             onClose={() => onClick(false)}
         >
-            <form action={createCustomer}>
+            <form action={createCustomer} onSubmit={() => onClick(false)}>
                 <DialogTitle>Create New Customer</DialogTitle>
                 <DialogContent>
                     <DialogContentText mb={2}>

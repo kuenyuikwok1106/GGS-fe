@@ -92,7 +92,7 @@ export default function ListingTable({
                 isLoading
                 ? <CircularLoader />
                 : (
-                    <TableContainer component={Paper} sx={{ maxHeight: '70vh', px: 2 }}>
+                    <TableContainer component={Paper} sx={{ maxHeight: '65vh', px: 2 }}>
                         <Table stickyHeader aria-label="simple table">
                             <TableHead>
                                 {renderer && renderer.tableHeader()}

@@ -21,7 +21,7 @@ export default function RoleInfo({
             <Typography variant="h6">Roles</Typography>
             <Divider sx={{ mb: 2 }}/>
             {
-                roles.length
+                roles && roles.length
                 ? (
                     <Stack direction="row" spacing={1} useFlexGap sx={{ flexWrap: 'wrap' }}>
                         {

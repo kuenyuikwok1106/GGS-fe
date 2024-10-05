@@ -31,7 +31,7 @@ export default function CreateDialog({
             open={open}
             onClose={() => onClick(false)}
         >
-            <form action={createCompany}>
+            <form action={createCompany} onSubmit={() => onClick(false)}>
                 <DialogTitle>Create New Company</DialogTitle>
                 <DialogContent>
                     <DialogContentText mb={2}>

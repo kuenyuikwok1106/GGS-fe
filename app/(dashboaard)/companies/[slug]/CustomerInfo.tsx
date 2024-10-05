@@ -25,7 +25,7 @@ export default function CustomerInfo({
                     </TableHead>
                     <TableBody>
                         {
-                            customers.length
+                            customers && customers.length
                                 ? (
                                     customers.map(({ companyRoles, id, firstName, lastName }) => (
                                         <TableRow key={id} sx={{ '&:hover': { cursor: 'pointer' } }}>
